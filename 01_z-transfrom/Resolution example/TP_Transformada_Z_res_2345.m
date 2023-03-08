@@ -59,3 +59,33 @@ figure
 hold on
 plot(n, x_n, 'LineStyle', 'none', 'marker', 'o', 'color', 'blue')
 plot(n, y_n, 'LineStyle', 'none', 'marker', 'o', 'color', 'red')
+
+
+% Ej. 5
+H = filt([1], [1, -0.5, -0.1, -0.2])
+n = 0:100
+x_n = ones(1, length(n));
+y_1 = 1;
+y_2 = 2;
+y_3 = 3;
+
+xi = [0]
+yi = [1 2 3]
+b = cell2mat(H.num)
+a = cell2mat(H.den)
+zi = filtic(b, a, yi, xi)
+
+y_n = filter(b, a, x_n, zi);
+figure
+hold on
+plot(n, x_n, 'LineStyle', 'none', 'marker', 'o', 'color', 'blue')
+plot(n, y_n, 'LineStyle', 'none', 'marker', 'o', 'color', 'red')
+
+
+figure
+zplane(b, a)
+hold on
+% [r,p,k] = residuez(b, a)
+% plot(p, '^r')
+% all the poles inside the unit circle => stable
+

@@ -1,5 +1,6 @@
 clc
 clear
+close all
 
 % Ej. 2.4
 n  = [0,  1,  2,  3]
@@ -28,14 +29,14 @@ H
 X = 1
 Y = H * X
 syms z
+disp("response to impluse")
 y = iztrans(1/(1-0.7*z^-1))
 % Ej. 4.3
 % x = heaviside(n)
-disp("response to impluse")
-
 X = filt([1], [1, -1])
 Y = H * X
 syms z
+disp("response to step")
 y = iztrans(1/(1 - 1.7*z^-1 + 0.7*z^-2))
 
 % Using residuez
@@ -43,9 +44,31 @@ y = iztrans(1/(1 - 1.7*z^-1 + 0.7*z^-2))
 
 % Using filter
 disp("response to impluse")
-x_n = [1 0 0 0 0 0 0 0 0]
+n = 0:11;
+x_n = [0 0 0 1 0 0 0 0 0 0 0 0]
 y_n = filter(cell2mat(H.numerator), cell2mat(H.denominator), x_n)
+figure
+hold on
+plot(n, x_n, 'LineStyle', 'none', 'marker', 'o', 'color', 'blue')
+plot(n, y_n, 'LineStyle', 'none', 'marker', 'o', 'color', 'red')
 
 disp("response to step")
-x_n = [1 1 1 1 1 1 1 1 1]
+x_n = [0 0 0 1 1 1 1 1 1 1 1 1]
 y_n = filter(cell2mat(H.numerator), cell2mat(H.denominator), x_n)
+figure
+hold on
+plot(n, x_n, 'LineStyle', 'none', 'marker', 'o', 'color', 'blue')
+plot(n, y_n, 'LineStyle', 'none', 'marker', 'o', 'color', 'red')
+
+
+% Ej. 5
+H = filt([1], [1, -0.5, -0.1, -0.2])
+x_n = [0 0 0 1 1 1 1 1 1 1 1 1];
+y_1 = 1;
+y_2 = 2;
+y_3 = 3;
+
+x_ic = [0 0 0]
+y_ic = [1 2 3]
+
+z = filtic(b,a,y_ic,x_ic)
