@@ -1,0 +1,7 @@
+{
+    "cmake.configureOnOpen": false,
+    "files.associations": {
+        "stdio.h": "c",
+        "compare": "c"
+    }
+}
