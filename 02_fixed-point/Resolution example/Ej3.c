@@ -1,10 +1,3 @@
-// Cree 2 funciones:
-// 1.	Una función para pasar de punto fijo a punto flotante, fx2fp( ).
-// 2.	Una función para pasar de punto flotante a punto fijo, fp2fx( ).
-// 3.	Verifique el correcto funcionamiento para Q23.8 haciendo
-// b = fx2fp( fp2fx( 2.4515) )
-// 4.	Compare b con 2.4515 para Q23.8 y Q21.10
-
 #include <math.h>
 #include <stdio.h>
 #include <stdint.h>
