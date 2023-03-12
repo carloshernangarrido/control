@@ -68,6 +68,5 @@ void main(void)
 
     printf("\nUsing the FPU:\n%f x %f = %f", x_float, y_float, z_float);
     printf("\nUsing Fixed Point with truncation:\n%f x %f = %f", x_float, y_float, z_float_);
-    printf("\nUsing Fixed Point with rounding:\n%f x %f = %f", x_float, y_float, z_float_rounding);
-    
+    printf("\nUsing Fixed Point with rounding:\n%f x %f = %f", x_float, y_float, z_float_rounding);   
 }
