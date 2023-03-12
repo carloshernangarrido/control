@@ -56,11 +56,26 @@ void pad_with_zeros(char* str) {
     strcpy(str, zeros); // copiar la cadena con ceros de vuelta a la cadena original
 }
 
+
+void insert_dot(char* str, int pos) {
+    int len = strlen(str);
+    if (pos >= len || pos < 0) {
+        return; // la posición está fuera del rango válido de la cadena
+    }
+    char tmp[len+2];
+    strncpy(tmp, str, pos); // copiar los caracteres a la izquierda de la posición
+    tmp[pos] = '.'; // insertar el punto en la posición deseada
+    strncpy(tmp+pos+1, str+pos, len-pos); // copiar los caracteres a la derecha de la posición
+    strncpy(str, tmp, len+1); // copiar el resultado de vuelta a la cadena original
+}
+
 char x_fx_char_hex[17];
-void int2binary(int64_t x, char* binary_string)
+void int2binary(int64_t x, char* binary_string, int fraction_bits)
 {
+    int dot_pos = 64 - fraction_bits;
     sprintf(x_fx_char_hex, "%X", x);
     hex_to_binary(x_fx_char_hex, binary_string);
     pad_with_zeros(binary_string);
+    insert_dot(binary_string, dot_pos);
 }
     

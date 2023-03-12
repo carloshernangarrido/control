@@ -61,8 +61,8 @@ void main(void)
 	for(int i = 0; i < sizeof(X) / sizeof(X[0]); i++)
 	{
         acum_32 += (int32_t) truncation(A[i] * B[i], FRACTION_BITS);
-        int2binary(acum_32, acum32_char_bin );
-        printf("\nacum_32 = %s = %f", acum32_char_bin, fx2fp(acum_32, FRACTION_BITS));
+        int2binary(acum_32, acum32_char_bin, FRACTION_BITS);
+        printf("\nacum_32 = %s = %.30f", acum32_char_bin, fx2fp(acum_32, FRACTION_BITS));
 	}
     printf("\n");
     // Multiply using Fixed Point acum_64
@@ -70,8 +70,13 @@ void main(void)
 	{
         acum_64 += (int64_t) ( (int64_t) A[i] * (int64_t) B[i] );
 
-        int2binary(acum_64, acum64_char_bin );
-        printf("\nacum_64 = %s = %f", acum64_char_bin, fx2fp(truncation(acum_64, FRACTION_BITS), FRACTION_BITS));
+        int2binary(acum_64, acum64_char_bin, 2*FRACTION_BITS);
+
+        // truncates to 32 bit before converting to float, so it does not represents the actually stored FX value
+        // printf("\nacum_64 = %s = %.20f", acum64_char_bin, fx2fp(truncation(acum_64, FRACTION_BITS), FRACTION_BITS));
+
+        printf("\nacum_64 = %s = %.30f", acum64_char_bin, fx2fp(acum_64, 2*FRACTION_BITS));
+
 	}
 
 }
