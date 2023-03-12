@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 
 #define MAX_BINARY_LENGTH 65  // Longitud máxima de la cadena de salida (64 bits + '\0')
 
@@ -37,3 +38,29 @@ void hex_to_binary(char* hex_string, char* binary_string) {
     }
     binary_string[binary_index] = '\0';  // Agregar el carácter nulo al final de la cadena
 }
+
+
+
+// Función para convertir un entero en una cadena de bits
+void pad_with_zeros(char* str) {
+    int len = strlen(str);
+    if (len >= 64) {
+        return; // la cadena ya es de 64 caracteres o más
+    }
+    int num_zeros = 64 - len;
+    char zeros[65] = ""; // arreglo para almacenar los ceros
+    for (int i = 0; i < num_zeros; i++) {
+        strcat(zeros, "0"); // concatenar ceros al arreglo
+    }
+    strcat(zeros, str); // concatenar la cadena original al arreglo de ceros
+    strcpy(str, zeros); // copiar la cadena con ceros de vuelta a la cadena original
+}
+
+char x_fx_char_hex[17];
+void int2binary(int64_t x, char* binary_string)
+{
+    sprintf(x_fx_char_hex, "%X", x);
+    hex_to_binary(x_fx_char_hex, binary_string);
+    pad_with_zeros(binary_string);
+}
+    
