@@ -1,6 +1,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <stdint.h>
+
 
 #define MAX_BINARY_LENGTH 65  // Longitud máxima de la cadena de salida (64 bits + '\0')
 

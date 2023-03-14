@@ -15,7 +15,7 @@ void main(void)
 	
 	c = a + b;	
 	// d = a * b;
-	d = (int32_t)(a * b);
+	d = (a * b);
 	
 	s1 = (-8) >> 2;
 	s2 = (-1) >> 5;
