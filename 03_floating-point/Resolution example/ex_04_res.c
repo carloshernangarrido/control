@@ -9,7 +9,7 @@
 #include <stdlib.h>
 
 // Compile usando el siguiente comando
-// compile: gcc -Wall -O3 -std=c99 ex_04.c -o ex_04 -lm -march=corei7 -frounding-math -fsignaling-nans
+// compile: gcc -Wall -O3 -std=c99 ex_04_res.c -o ex_04_res -lm -march=corei7 -frounding-math -fsignaling-nans
 
 #define _GNU_SOURCE 1
 #define _ISOC99_SOURCE
@@ -31,34 +31,71 @@ int main(void)
 {	
   int ROUND_MODE;
 	
+  float a;
+
+
   ROUND_MODE = fegetround();		
   printf("Current Round Mode = %d \n", ROUND_MODE );
 		
   show_fe_exceptions();
       
   /* Temporarily raise other exceptions */
+  printf("\n Temporarily raise other exceptions");
+  printf("\n 1");
   feclearexcept(FE_ALL_EXCEPT);
   feraiseexcept(FE_INEXACT);
   show_fe_exceptions();
-    
+  
+  printf("\n 2");  
   feclearexcept(FE_ALL_EXCEPT);
   feraiseexcept(FE_INVALID);
   show_fe_exceptions();
-
+  
+  printf("\n 3");
   feclearexcept(FE_ALL_EXCEPT);    
   feraiseexcept(FE_DIVBYZERO);
   show_fe_exceptions();
 
+  printf("\n 4");
   feclearexcept(FE_ALL_EXCEPT);
   feraiseexcept(FE_OVERFLOW);
   show_fe_exceptions();
 
+  printf("\n 5");
   feclearexcept(FE_ALL_EXCEPT);
   feraiseexcept(FE_UNDERFLOW);
   show_fe_exceptions();
   
+  printf("\n 6");
   feclearexcept(FE_ALL_EXCEPT);
   feraiseexcept(FE_OVERFLOW | FE_INEXACT);
+  show_fe_exceptions();
+
+  printf("\nTest");
+  feclearexcept(FE_ALL_EXCEPT);
+  printf("\nBefore the operation");
+  show_fe_exceptions();
+  a = 0./0;
+  printf("\nBefore the operation: 0./0 = %f", a);
+  printf("\n");
+  show_fe_exceptions();
+
+  printf("\nTest");
+  feclearexcept(FE_ALL_EXCEPT);
+  printf("\nBefore the operation");
+  show_fe_exceptions();
+  a = 1 + 1e10;
+  printf("\nBefore the operation: 1 + 1e10 = %f", a);
+  printf("\n");
+  show_fe_exceptions();
+
+  printf("\nTest");
+  feclearexcept(FE_ALL_EXCEPT);
+  printf("\nBefore the operation");
+  show_fe_exceptions();
+  a = 1./0;
+  printf("\nBefore the operation: 1./0 = %f", a);
+  printf("\n");
   show_fe_exceptions();
 
 	return 0;	
