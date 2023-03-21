@@ -3,7 +3,7 @@
 // Author:  Rodrigo Gonzalez <rodralez@frm.utn.edu.ar>
 
 // Compile usando el siguiente comando
-// compile: gcc -Wall -std=c99 ex_01.c -o ex_01
+// compile: gcc -Wall -std=c99 ex_01_res.c -o ex_01_res
 
 #include <stdio.h>
 #include <float.h>
@@ -32,7 +32,7 @@ int main(void)
 	
 	printf("Error en f1 = %10e \n", f1 - 400000000000000000000000.0 );
 	printf("Error en f2 = %10e \n", f2 - 400000000000000000000000.0 );
-	printf("Error en d1 = %20e \n", d1 - 400000000000000000000000.0 );
+	printf("Error en d1 = %.80lf \n", d1 - 400000000000000000000000.0 );
 	
 	double acum_1, acum_2;
 	
