@@ -1,0 +1,13 @@
+
+
+clc
+clear
+close all
+
+
+path = 'C:\Users\joses\Mi unidad\Docencia\fing\Mecatronica\Control y Sistemas\Repo\control\05_fir-filtering\files\'
+load([path 'Tchaikovsky.mat'])
+
+signal = signal(:, 1);
+
+Hd = f
