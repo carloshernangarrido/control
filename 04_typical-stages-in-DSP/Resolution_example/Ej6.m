@@ -9,7 +9,7 @@ q3 = quantizer('fixed','floor','saturate',[32 16]);
 
 
 % Ej. 6.2.
-u = linspace(-1500000, 1500000, 100000);
+u = linspace(-15, 15, 1000);
 
 % Ej. 6.3
 y1 = quantize(q1, u);
@@ -19,10 +19,10 @@ y3 = quantize(q3, u);
 
 figure
 hold on
-plot(u', u', 'linewidth', 3)
-plot(u', y1', 'linewidth', 2)
-plot(u', y2', 'linewidth', 2)
-plot(u', y3', 'linewidth', 2)
+plot(u, u, 'linewidth', 3)
+plot(u, y1, 'linewidth', 2)
+plot(u, y2, 'linewidth', 2)
+plot(u, y3, 'linewidth', 2)
 legend('u', 'y1', 'y2', 'y3')
 
 % Ej. 6.4

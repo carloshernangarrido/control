@@ -65,14 +65,14 @@ grid on
 
 %% PLOT IN FREQ
 
-[f1, mag_s ] = my_dft(adc_signal_f, Fs);
-[f2, maf_f ] = my_dft(fir_output, Fs);
-[f3, maf_m ] = my_dft(fir_output_m, Fs);
+[f1, mag_s ] = my_dft(adc_signal_f(500:end), Fs);
+[f2, maf_f ] = my_dft(fir_output(500:end), Fs);
+[f3, maf_m ] = my_dft(fir_output_m(500:end), Fs);
 
 figure
 plot(f1, mag_s, '-k', 'LineWidth', 2)
 hold on
-plot(f2, maf_f, '--b', 'LineWidth', 2)
+plot(f2, maf_f, '-b', 'LineWidth', 2)
 plot(f2, maf_m, '--r', 'LineWidth', 2)
 legend('INPUT SIGNAL' , 'FIR OUTPUT MATLAB', 'FIR OUTPUT C')
 grid on
