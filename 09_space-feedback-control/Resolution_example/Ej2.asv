@@ -1,0 +1,13 @@
+clc
+
+clear
+
+close all
+
+
+%% State space system
+A    = [ -ds/(Jf*i^2) ds/(Jf*i) -cs/(Jf*i)
+         ds/(Jc*i)    -ds/Jc    cs/Jc
+         1/i          -1        0 ];
+    
+B = [1/Jf 0 0]'
