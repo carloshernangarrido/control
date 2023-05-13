@@ -42,37 +42,27 @@ Rw = 0.01 % variance (sigma_w^2)
 %% 2. Encuentre el valor de la matriz de ganancia de observación L.
 L = P*C'*inv(Rw)
 [L,~,~] = (lqr(A_s', C', Rv, Rw));
-L = L'
+
 syms s
 obsv_poles = double(solve(det(s*eye(2) - (A_s-L*C)), s))
 proto_obs = zpk([], obsv_poles, 1);
 figure
 subplot(1,2,1)
 pzmap(proto_obs)
-xlim([-3, 0])
-ylim([-3, 3])
 subplot(1,2,2)
 step(proto_obs, 0:.01:5)
-xlim([0, 5])
-ylim([0, .35])
 
 %% 3. Si aumenta el ruido del proceso Rv
 Rv_larger = Rv*10
 [P_new,~,~] = care(A_s',(sqrt(inv(Rw))*C)', Rv_larger)
 L_new = P_new*C'*inv(Rw)
-[L_new,~,~] = (lqr(A_s', C', Rv_larger, Rw));
-L_new = L_new'
 obsv_poles = double(solve(det(s*eye(2) - (A_s-L_new*C)), s))
 proto_obs = zpk([], obsv_poles, 1);
 figure
 subplot(1,2,1)
 pzmap(proto_obs)
-xlim([-3, 0])
-ylim([-3, 3])
 subplot(1,2,2)
 step(proto_obs, 0:.01:5)
-xlim([0, 5])
-ylim([0, .35])
 
 % Si el proceso tiene más ruido, relativamente debo confiar mas en la
 % medición.
