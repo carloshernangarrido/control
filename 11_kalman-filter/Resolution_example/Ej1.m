@@ -15,7 +15,7 @@ A    = [ -ds/(Jf*i^2) ds/(Jf*i) -cs/(Jf*i)
          ds/(Jc*i)    -ds/Jc    cs/Jc
          1/i          -1        0 ];
 B = [1/Jf 0 0]';
-B_d = [0 -1/Jc 0]';
+% B_d = [0 -1/Jc 0]';
 C = [0 1 0];
 D = [0];
 
@@ -36,7 +36,7 @@ A    = [ -ds/(Jf*i^2) ds/(Jf*i) -cs/(Jf*i)  0
          0            1         0           0];
      
 B = [1/Jf 0 0 0]';
-B_d = [0 -1/Jc 0 0]';
+% B_d = [0 -1/Jc 0 0]';
 C = [0 0 0 1];
 D = [0];
 
@@ -57,6 +57,7 @@ Q = 0;
 
 %% 3. Valores a priori
 x0 = zeros(dim, 1)
+x0(3) = .0015;
 P0 = zeros(dim, dim)
 
 %% 4. Simulación
@@ -93,10 +94,11 @@ sysc = ss(A, B, C, D);
 Ts = t(2) - t(1);
 sysd = c2d( sysc , Ts );
 
-
 %% Filtro de Kalman discreto
-
-y_noisy = y + sqrt(R)*randn(length(y),1);
+w = sqrt(R)*randn(length(y),1);
+R
+cov(w)
+y_noisy = y + w;
 
 P = P0*eye(4);
 x = x0;
