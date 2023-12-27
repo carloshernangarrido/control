@@ -29,8 +29,8 @@ measured_accel = actual_accel + noise;
 % N = round(pi/Omega_co)
 % b = (1/N)*ones(1, N);
 
-mifiltro = filtro_hamming_100;
-% mifiltro = filtro_hamming_10;
+% mifiltro = filtro_hamming_100;
+mifiltro = filtro_hamming_10;
 
 
 b = mifiltro.Numerator;
